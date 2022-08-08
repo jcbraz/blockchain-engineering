@@ -49,6 +49,7 @@ async function main() {
   console.log("Deploying, please wait...");
   const contract = await contractFactory.deploy(); // deploy the contract --> await keyword means it has to way for the abi and binary to be completed (synchronous property). If there was not the await keyword, the Promise would be pending.
   // const contractWithGas = await ethers.ContractFactory({ gasLimit: 100 }); --> example of override
+  
   // const transactionReceipt = await contract.deployTransaction.wait(1); // wait 1 block validation (.wait(1))
   // console.log("Here is the deployment transaction: \n");
   // console.log(contract.deployTransaction);
@@ -56,8 +57,6 @@ async function main() {
   // console.log(transactionReceipt);
   await contract.deployTransaction.wait(1);
   console.log(`Contract Address: ${contract.address}`);
-
-
 
   //   console.log("Let's deploy with only transaction data!");
   //   const nounce = await wallet.getTransactionCount();
@@ -74,8 +73,6 @@ async function main() {
   //   const sentTxResponse = await wallet.sendTransaction(tx);
   //   console.log(sentTxResponse);
 
-
-
   const currentFavoriteNumber = await contract.retrieve(); // after generating a deployable contract and executing it, we can use the methods in the contract directly.
   console.log(currentFavoriteNumber);
 }
@@ -90,7 +87,6 @@ main()
 // NOTES:
 
 // Compile manually: yarn solcjs --bin --abi --include-path node_modules/ --base-path . -o . SimpleStorage.sol --> there is a script: yarn compile
-
 
 // Ganache  --> fake blockchain
 
