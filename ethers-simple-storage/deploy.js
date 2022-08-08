@@ -49,11 +49,14 @@ async function main() {
   console.log("Deploying, please wait...");
   const contract = await contractFactory.deploy(); // deploy the contract --> await keyword means it has to way for the abi and binary to be completed (synchronous property). If there was not the await keyword, the Promise would be pending.
   // const contractWithGas = await ethers.ContractFactory({ gasLimit: 100 }); --> example of override
-  const transactionReceipt = await contract.deployTransaction.wait(1); // wait 1 block validation (.wait(1))
-  console.log("Here is the deployment transaction: \n");
-  console.log(contract.deployTransaction);
-  console.log("Here is the transaction receipt: \n");
-  console.log(transactionReceipt);
+  
+  // const transactionReceipt = await contract.deployTransaction.wait(1); // wait 1 block validation (.wait(1))
+  // console.log("Here is the deployment transaction: \n");
+  // console.log(contract.deployTransaction);
+  // console.log("Here is the transaction receipt: \n");
+  // console.log(transactionReceipt);
+  await contract.deployTransaction.wait(1);
+  console.log(`Contract Address: ${contract.address}`);
 
   //   console.log("Let's deploy with only transaction data!");
   //   const nounce = await wallet.getTransactionCount();
@@ -85,8 +88,7 @@ main()
 
 // Compile manually: yarn solcjs --bin --abi --include-path node_modules/ --base-path . -o . SimpleStorage.sol --> there is a script: yarn compile
 
-
-// Ganache --> fake blockchain
+// Ganache  --> fake blockchain
 
 
 // RPC --> Remote Procedure Call
@@ -100,6 +102,11 @@ main()
 // An alternative way to the ".env" file is to run the command directly on the command line:
 // RPC_URL=... PRIVATE_KEY=... node deploy.js
 
+
+// Alchemy app --> test on the real test-net
+
+
 // !! Documentation:
 // https://docs.ethers.io/v5/
 // https://github.com/smartcontractkit/full-blockchain-solidity-course-js/discussions/5
+// https://faucets.chain.link/rinkeby
