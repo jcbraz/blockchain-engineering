@@ -1,12 +1,13 @@
-const { ethers } = require("hardhat")
-const { expect, assert } = require("chai")
+import { ethers } from "hardhat";
+import { expect, assert } from "chai";
+import { SimpleStorage, SimpleStorage__factory } from "../typechain-types";
 
 
 // describe("SimpleStorage", () => {})
 describe("SimpleStorage", function () {
-    let simpleStorageFactory, simpleStorage; // we declare the variables here so the variables can be used in the "it" scope
+    let simpleStorageFactory: SimpleStorage__factory, simpleStorage: SimpleStorage; // we declare the variables here so the variables can be used in the "it" scope
     beforeEach(async function () {
-        simpleStorageFactory = await ethers.getContractFactory("SimpleStorage");
+        simpleStorageFactory = (await ethers.getContractFactory("SimpleStorage")) as SimpleStorage__factory;
         simpleStorage = await simpleStorageFactory.deploy();
     }) // what to do before each one of "it"
 

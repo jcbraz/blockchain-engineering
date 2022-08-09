@@ -1,5 +1,5 @@
 // imports
-const { ethers, run, network } = require("hardhat"); // run allows to run any hardhat command task via code
+import { ethers, run, network } from "hardhat";
 
 // async main
 async function main() {
@@ -27,14 +27,14 @@ async function main() {
 
 // function to auto-verify --> for this, we will use the hardhat-etherscan plugin
 // add plugin: yarn add --dev @nomiclabs/hardhat-etherscan 
-async function verify(contractAddress, args) {
+async function verify(contractAddress: string, args: any[]) {
   console.log("Verifying contract!");
   try {
     await run("verify:verify",{
       address: contractAddress,
       constructorArguments: args,
     })
-  } catch (e) {
+  } catch (e: any) {
       if (e.message.toLowerCase().includes("already verified")) {
         console.log("Already Verified!");
       } else {

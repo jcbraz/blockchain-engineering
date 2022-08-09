@@ -3,7 +3,7 @@
 
 // This file will be used to create a task to get the block-number of the transaction we are working in.
 
-const { task } = require("hardhat/config");
+import { task } from "hardhat/config"
 
 task("block-number","Prints the current block number").setAction(
     // const blockTask = async function() => {}
